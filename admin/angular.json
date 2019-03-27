@@ -29,7 +29,14 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./src/vendor/jquery/jquery.min.js",
+              "./src/vendor/bootstrap/js/bootstrap.min.js",
+              "./src/vendor/metisMenu/metisMenu.min.js",
+              "./src/vendor/raphael/raphael.min.js",
+              "./src/vendor/morrisjs/morris.min.js",
+              "./src/dist/js/sb-admin-2.js"
+            ]
           },
           "configurations": {
             "production": {

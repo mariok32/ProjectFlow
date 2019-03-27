@@ -4,17 +4,29 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+
+
+import { PointFormComponent } from './point-form/point-form.component';
+import { TaskService } from './services/task.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    
+    AppComponent,
+    
+    PointFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

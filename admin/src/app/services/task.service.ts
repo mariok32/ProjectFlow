@@ -5,13 +5,7 @@ import { Task } from './../interfaces/task';
 import { Token } from './../interfaces/token';
 import { Config } from './../interfaces/config';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaXNwbGF5bmFtZSI6InVjYW0zIiwiZ2FtZSI6InVjYW0zIiwidXNlcm5hbWUiOiJ1Y2FtMyIsImlhdCI6MTU1MTk2ODQxOH0.jr32MQx-ieTYNZJ2ovPHnGurg3C96nLTAe277ymXDeY'
 
-  })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -37,20 +31,28 @@ export class TaskService {
     });
   }
 
-  putConfig(id: string,token: string,invitation: string,promotion: number,points: number) {
+  putConfig(promotion: number,points: number,token: string) {
     const path = `${this.api}/config`;
+    const httpOptions = {
+
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer '+ token
+    
+      })
+    };
+    console.log(path)
     return this.http.put<Config>(path,{
-      "id":id,
-      "token":token,
-      "invitation":invitation,
       "promotion":promotion,
       "points":points
-    },httpOptions);
+    },
+      httpOptions);
+
   }
 
   getConfig(){
     const path = `${this.api}/config`;
-    return this.http.put<Config>(path,httpOptions);
+   // return this.http.put<Config>(path,httpOptions);
   }
 
   createTask(task: Task) {
