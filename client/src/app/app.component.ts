@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from './services/task.service';
+import { bloomHasToken } from '@angular/core/src/render3/di';
+import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
+import { paramss} from './interfaces/params';
+import {Config} from './interfaces/config';
 
 @Component({
   selector: 'app-root',
@@ -7,26 +11,45 @@ import { TaskService } from './services/task.service';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+
+export class AppComponent implements OnInit{
   title = 'angular-http-client';
   label='Hazme click para saber cuantos puntos tienes';
+  invitation:string;
+  validation:string;
+  config: Config;
 
+  
   private token: string
   constructor(
     private taskService: TaskService,
+    private rutaActiva: ActivatedRoute,
+    private router: Router
     
   ) {}
 
-  boton() {
-    this.taskService.getToken().subscribe(token => 
+  ngOnInit() {
+    this.rutaActiva.queryParams.subscribe(params => {
+       this.invitation = params['invitation'];
+       this.validation = params['validation'];
+    });
+
+    this.taskService.getConfig().subscribe(config => 
       {
-        console.log(token);
-        this.token=token.token;
+        console.log(config);
+        this.config=config;
       } );
 
 
-   // this.taskService.putConfig("ucam3test",this.token,"ujjftg",0,100).subscribe();//LA USAREMOS EN LA PARTE DEL ADMIN
- 
-    
+
+  
   }
+
+  boton() {
+    this.taskService.getConfig().subscribe
+    alert('Has ganado '+this.config.points+' puntos');
+  }
+
+
+
 }
