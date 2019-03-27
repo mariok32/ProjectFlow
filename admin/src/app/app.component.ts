@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { TaskService } from './services/task.service';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,26 +10,25 @@ import { TaskService } from './services/task.service';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
-  title = 'angular-http-client';
-  label='Hazme click para saber cuantos puntos tienes';
-
+export class AppComponent implements OnInit {
+  title = 'Panel de administración';
   private token: string
   constructor(
     private taskService: TaskService,
+    private router: Router 
     
   ) {}
 
-  boton() {
+  ngOnInit() { 
+    this.funciones1();
+   }
+
+  funciones1()  {
     this.taskService.getToken().subscribe(token => 
       {
         console.log(token);
         this.token=token.token;
       } );
 
-
-   // this.taskService.putConfig("ucam3test",this.token,"ujjftg",0,100).subscribe();//LA USAREMOS EN LA PARTE DEL ADMIN
- 
-    
   }
 }

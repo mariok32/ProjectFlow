@@ -50,7 +50,7 @@ export class TaskService {
 
   getConfig(){
     const path = `${this.api}/config`;
-    return this.http.put<Config>(path,httpOptions);
+    return this.http.get<Config>(path,httpOptions);
   }
 
   createTask(task: Task) {
