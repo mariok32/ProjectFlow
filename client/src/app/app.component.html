@@ -1,9 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    TestApp Grupo3!
-  </h1>
-  <button (click)="boton()"  >{{ label }}</button>
+  <html>
+    <script src="../assets/Winwheel.js"></script>
+    
+ 
+   
+        <canvas id='canvas' width='1200' height='800'>
+            Canvas not supported, use another browser.
+        </canvas>
+        
+        <button (click)=" startSpin()">Girar</button>
+ 
+
+        
+
+</html>
 </div>
 
 <router-outlet></router-outlet>

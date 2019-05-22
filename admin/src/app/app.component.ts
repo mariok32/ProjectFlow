@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class AppComponent implements OnInit {
   title = 'Panel de administración';
-  private token: string
+   token: string
   constructor(
     private taskService: TaskService,
     private router: Router 

@@ -30,12 +30,12 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./src/vendor/jquery/jquery.min.js",
-              "./src/vendor/bootstrap/js/bootstrap.min.js",
-              "./src/vendor/metisMenu/metisMenu.min.js",
-              "./src/vendor/raphael/raphael.min.js",
-              "./src/vendor/morrisjs/morris.min.js",
-              "./src/dist/js/sb-admin-2.js"
+              "./src/assets/vendor/jquery/jquery.min.js",
+              "./src/assets/vendor/bootstrap/js/bootstrap.min.js",
+              "./src/assets/vendor/metisMenu/metisMenu.min.js",
+              "./src/assets/vendor/raphael/raphael.min.js",
+              "./src/assets/vendor/morrisjs/morris.min.js",
+              "./src/assets/dist/js/sb-admin-2.js"
             ]
           },
           "configurations": {

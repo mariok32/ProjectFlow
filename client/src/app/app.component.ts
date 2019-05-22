@@ -4,12 +4,14 @@ import { bloomHasToken } from '@angular/core/src/render3/di';
 import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
 import { paramss} from './interfaces/params';
 import {Config} from './interfaces/config';
+import * as Winwheel from 'Winwheel';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 
 
 export class AppComponent implements OnInit{
@@ -19,16 +21,42 @@ export class AppComponent implements OnInit{
   validation:string;
   config: Config;
 
-  
-  private token: string
+
+  private token: string;
+  myWheel:any;
+  private wheelSpinning = false;
+
   constructor(
     private taskService: TaskService,
     private rutaActiva: ActivatedRoute,
-    private router: Router
+    private router: Router,
+  
+
     
-  ) {}
+  ) {
+  
+  }
 
   ngOnInit() {
+    let myWheel = new Winwheel({
+      'numSegments'    : 4,
+      'segments'       :
+      [
+          {'fillStyle' : '#eae56f', 'text' : 'Prize One'},
+          {'fillStyle' : '#89f26e', 'text' : 'Prize Two'},
+          {'fillStyle' : '#7de6ef', 'text' : 'Prize Three'},
+          {'fillStyle' : '#e7706f', 'text' : 'Prize Four'}
+      ],
+      'animation' :
+      {
+          'type'     : 'spinToStop',
+          'duration' : 5,
+          'spins'    : 8
+      }
+  });
+      
+   
+
     this.rutaActiva.queryParams.subscribe(params => {
        this.invitation = params['invitation'];
        this.validation = params['validation'];
@@ -43,6 +71,27 @@ export class AppComponent implements OnInit{
 
 
   
+  }
+
+
+  startSpin() {
+    // Ensure that spinning can't be clicked again while already running.
+    if (this.wheelSpinning === false) {
+      this.myWheel.startAnimation(true);
+      this.wheelSpinning = true;
+    }
+  }
+
+  resetWheel() {
+    this.myWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+    this.myWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+    this.myWheel.draw();                // Call draw to render changes to the wheel.
+
+    this.wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+  }
+
+  girar(){
+   
   }
 
   boton() {

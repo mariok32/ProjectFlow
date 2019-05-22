@@ -32,7 +32,7 @@ export class PointFormComponent implements OnInit {
   }
 
   enviarFormulario(){
-    this.taskService.putConfig(0,Number(this.cconfiguracion.valueOf),this.token).subscribe();
+    this.taskService.putConfig(0,Number(this.cconfiguracion),this.token).subscribe();
   }
 
 }
