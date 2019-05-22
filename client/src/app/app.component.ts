@@ -23,14 +23,14 @@ export class AppComponent implements OnInit{
 
 
   private token: string;
-  myWheel:any;
+  myWheel:Winwheel;
   private wheelSpinning = false;
 
   constructor(
     private taskService: TaskService,
     private rutaActiva: ActivatedRoute,
     private router: Router,
-  
+    
 
     
   ) {
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    let myWheel = new Winwheel({
+     this.myWheel = new Winwheel({
       'numSegments'    : 4,
       'segments'       :
       [
@@ -50,8 +50,9 @@ export class AppComponent implements OnInit{
       'animation' :
       {
           'type'     : 'spinToStop',
-          'duration' : 5,
-          'spins'    : 8
+          'duration' : 10,
+          'spins'    : 16,
+        
       }
   });
       
@@ -75,6 +76,9 @@ export class AppComponent implements OnInit{
 
 
   startSpin() {
+    let audio = new Audio('./assets/a.m4a'); 
+    audio.currentTime = 1;
+    audio.play();
     // Ensure that spinning can't be clicked again while already running.
     if (this.wheelSpinning === false) {
       this.myWheel.startAnimation(true);
@@ -90,15 +94,11 @@ export class AppComponent implements OnInit{
     this.wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
   }
 
-  girar(){
+ 
    
   }
 
-  boton() {
-    this.taskService.getConfig().subscribe
-    alert('Has ganado '+this.config.points+' puntos');
-  }
 
 
 
-}
+
