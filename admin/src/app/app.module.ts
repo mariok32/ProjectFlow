@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import { PointFormComponent } from './point-form/point-form.component';
 import { TaskService } from './services/task.service';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
@@ -42,8 +41,6 @@ const appRoutes: Routes = [
   declarations: [
     
     AppComponent,
-    
-    PointFormComponent,
     
     AdminComponent,
     

@@ -5,6 +5,7 @@ import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
 import { paramss} from './interfaces/params';
 import {Config} from './interfaces/config';
 import * as Winwheel from 'Winwheel';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-root',
@@ -20,11 +21,13 @@ export class AppComponent implements OnInit{
   invitation:string;
   validation:string;
   config: Config;
+  nsegmentos:number;
 
 
   private token: string;
   myWheel:Winwheel;
   private wheelSpinning = false;
+ 
 
   constructor(
     private taskService: TaskService,
@@ -38,23 +41,35 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-     this.myWheel = new Winwheel({
-      'numSegments'    : 4,
-      'segments'       :
-      [
-          {'fillStyle' : '#eae56f', 'text' : 'Prize One'},
-          {'fillStyle' : '#89f26e', 'text' : 'Prize Two'},
-          {'fillStyle' : '#7de6ef', 'text' : 'Prize Three'},
-          {'fillStyle' : '#e7706f', 'text' : 'Prize Four'}
-      ],
-      'animation' :
-      {
-          'type'     : 'spinToStop',
-          'duration' : 10,
-          'spins'    : 16,
-        
-      }
-  });
+    
+    
+
+    this.taskService.getConfig(this.token).subscribe(
+      r=> {
+       
+        this.myWheel = new Winwheel({
+          'numSegments'    : r.nsegementos,
+          'segments'       :
+          [
+              {'fillStyle' : '#eae56f', 'text' : 'Prize One'},
+              {'fillStyle' : '#89f26e', 'text' : 'Prize Two'},
+              {'fillStyle' : '#7de6ef', 'text' : 'Prize Three'},
+              {'fillStyle' : '#e7706f', 'text' : 'Prize Four'}
+          ],
+          'animation' :
+          {
+              'type'     : 'spinToStop',
+              'duration' : 10,
+              'spins'    : 16,
+            
+          }
+      });
+
+   
+      console.log()});
+ 
+
+     
       
    
 
@@ -63,12 +78,7 @@ export class AppComponent implements OnInit{
        this.validation = params['validation'];
     });
 
-    this.taskService.getConfig().subscribe(config => 
-      {
-        console.log(config);
-        this.config=config;
-      } );
-
+    
 
 
   
@@ -78,6 +88,7 @@ export class AppComponent implements OnInit{
   startSpin() {
     let audio = new Audio('./assets/a.m4a'); 
     audio.currentTime = 1;
+    audio.duration;
     audio.play();
     // Ensure that spinning can't be clicked again while already running.
     if (this.wheelSpinning === false) {

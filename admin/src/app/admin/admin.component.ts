@@ -38,7 +38,7 @@ export class AdminComponent implements OnInit {
 
     
     setSegmentos(){
-     
+     this._taskservice.putConfig("nsegmentos",this.nSegmentos,localStorage.getItem('token')).subscribe();
     }
 
     getConfig(){

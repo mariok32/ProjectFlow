@@ -28,7 +28,7 @@
                       <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                       </li>
                       <li class="divider"></li>
-                      <li><button (click)=logout() ><i class="fa fa-sign-out fa-fw"></i> Logout</button>
+                      <li><a (click)=logout() ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                       </li>
                   </ul>
                   <!-- /.dropdown-user -->
@@ -168,7 +168,7 @@
                                         
                                     </div>
                                   
-                                  </form>  <button (click)="enviarFormulario()" class="btn btn-primary"> Ajustar</button></div>
+                                  </form>  <button (click)="setSegmentos()" class="btn btn-primary"> Ajustar</button></div>
                             </div>
                             
                           </div>
@@ -187,11 +187,11 @@
                                         <div class="form-group" >
                                           <label for="">Segmentos</label>
                                               
-                                            <input title="Se necesita un nombre" placeholder={{nSegmentos}} class="form-control form-control-lg" type="text" name="points" [(ngModel)]="cconfiguracion" required/>
+                                            <input title="segmentos" placeholder={{nSegmentos}} class="form-control form-control-lg" type="text" name="points" [(ngModel)]="this.nSegmentos" required/>
                                             
                                         </div>
                                       
-                                      </form>  <button (click)="enviarFormulario()" class="btn btn-primary"> Ajustar</button></div>
+                                      </form>  <button (click)="setSegmentos()" class="btn btn-primary"> Ajustar</button></div>
                                 </div>
                                 
                               </div>

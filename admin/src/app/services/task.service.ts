@@ -4,7 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Task } from './../interfaces/task';
 import { Token } from './../interfaces/token';
 import { Config } from './../interfaces/config';
-import { Observable } from 'rxjs';
+import { Observable, concat } from 'rxjs';
+import { string } from 'prop-types';
 
 
 
@@ -18,8 +19,8 @@ export class TaskService {
   
 
   private api = 'https://gameserver.centic.ovh';
-  
-
+  strfinal:string;
+  numb:string;
   constructor(
     private http: HttpClient
   ){}
@@ -32,22 +33,26 @@ export class TaskService {
     });
   }
 
-  putConfig(promotion: number,points: number,token: string) {
+  putConfig(cadena: string,valor: number,token: string):Observable <Config> {
     const path = `${this.api}/config`;
     const httpOptions = {
 
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer '+ localStorage.getItem['token']
+        'Authorization': 'Bearer '+ token
     
       })
     };
+   
+
+    this.strfinal=cadena.concat(":");
     
-    return this.http.put<Config>(path,{
-      "promotion":promotion,
-      "points":points
-    },
+    let obj= {}
+    obj[cadena] = valor;
+    return this.http.put<Config>(path,
+      obj,
       httpOptions);
+
 
   }
 
