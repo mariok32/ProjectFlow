@@ -8,8 +8,8 @@ export class User {
 }
  
 var users = [
-  new User('admin@admin.com','adm9'),
-  new User('user1@gmail.com','a23')
+  //new User('admin@admin.com','adm9'),
+  //new User('user1@gmail.com','a23')
 ];
  
 @Injectable()
@@ -19,7 +19,7 @@ export class LoginService {
     private _router: Router){}
  
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     this._router.navigate(['login']);
   }
  
@@ -35,7 +35,7 @@ export class LoginService {
   }
  
    checkCredentials(){
-    if (localStorage.getItem("user") === null){
+    if (localStorage.getItem("token") === null){
         this._router.navigate(['login']);
     }
   }

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Task } from './../interfaces/task';
 import { Token } from './../interfaces/token';
 import { Config } from './../interfaces/config';
+import { Observable } from 'rxjs';
 
 
 
@@ -37,11 +38,11 @@ export class TaskService {
 
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Bearer '+ token
+        'Authorization': 'Bearer '+ localStorage.getItem['token']
     
       })
     };
-    console.log(path)
+    
     return this.http.put<Config>(path,{
       "promotion":promotion,
       "points":points
@@ -50,9 +51,18 @@ export class TaskService {
 
   }
 
-  getConfig(){
+  getConfig(token:string): Observable<Config>{
     const path = `${this.api}/config`;
-   // return this.http.put<Config>(path,httpOptions);
+ 
+    const httpOptions = {
+      
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer '+ token
+    
+      })
+    };
+    return this.http.get<Config>(path,httpOptions);
   }
 
   createTask(task: Task) {

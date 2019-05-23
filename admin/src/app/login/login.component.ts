@@ -10,8 +10,9 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent {
 
-  email = 'peter@klaven';
-  password = 'cityslicka';
+  email:string;
+  password:string;
+ 
 
   constructor(private api: ApiService, private customer: CustomerService, private router: Router) {
   }
@@ -23,13 +24,18 @@ export class LoginComponent {
     )
       .subscribe(
         r => {
+        
           if (r.token) {
-            this.customer.setToken(r.token);
-            this.router.navigateByUrl('/dashboard');
+            localStorage.setItem('token',r.token);
+         
+            this.router.navigateByUrl('/admin');
+         
+          
           }
         },
+
         r => {
-          alert(r.error.error);
+          alert('Login incorrecto');
         });
   }
 

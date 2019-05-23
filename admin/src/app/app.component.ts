@@ -20,15 +20,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() { 
-    this.funciones1();
-   }
+ 
+   
 
-  funciones1()  {
-    this.taskService.getToken().subscribe(token => 
-      {
-        console.log(token);
-        this.token=token.token;
-      } );
+  
 
   }
 }
