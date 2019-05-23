@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { TaskService } from './services/task.service';
 import { bloomHasToken } from '@angular/core/src/render3/di';
 import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
@@ -21,13 +21,13 @@ export class AppComponent implements OnInit{
   invitation:string;
   validation:string;
   config: Config;
-  nsegmentos:number;
+ 
 
 
   private token: string;
   myWheel:Winwheel;
   private wheelSpinning = false;
- 
+  private nsegmentos:number;
 
   constructor(
     private taskService: TaskService,
@@ -41,37 +41,42 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    
+    this.myWheel = new Winwheel({
+      'numSegments'    : 0,
+      'segments'       :
+      [
+          {'fillStyle' : '#eae56f', 'text' : 'Prize One'},
+           
+      ],
+      'animation' :
+      {
+          'type'     : 'spinToStop',
+          'duration' : 10,
+          'spins'    : 16,
+        
+      }
+  });
     
 
     this.taskService.getConfig(this.token).subscribe(
       r=> {
-       
-        this.myWheel = new Winwheel({
-          'numSegments'    : r.nsegementos,
-          'segments'       :
-          [
-              {'fillStyle' : '#eae56f', 'text' : 'Prize One'},
-              {'fillStyle' : '#89f26e', 'text' : 'Prize Two'},
-              {'fillStyle' : '#7de6ef', 'text' : 'Prize Three'},
-              {'fillStyle' : '#e7706f', 'text' : 'Prize Four'}
-          ],
-          'animation' :
-          {
-              'type'     : 'spinToStop',
-              'duration' : 10,
-              'spins'    : 16,
-            
-          }
-      });
-
-   
+       this.nsegmentos=r.nsegmentos;
+        var paso;
+    for (paso = 0; paso < this.nsegmentos; paso++) {
+     let newSegment= this.myWheel.addSegment();
+     
+     newSegment.text="EJEMPLO RENDER";
+     
+      this.myWheel.draw();
+    };
       console.log()});
  
 
-     
       
    
+    
+   console.log(this.myWheel);`
+   `
 
     this.rutaActiva.queryParams.subscribe(params => {
        this.invitation = params['invitation'];

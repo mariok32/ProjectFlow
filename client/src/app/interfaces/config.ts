@@ -4,6 +4,6 @@ export interface Config {
     invitation:string;
     promotion:number;
     points: number;
-    nsegementos:number;
+    nsegmentos:number;
   }
   
