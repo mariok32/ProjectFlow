@@ -23,11 +23,9 @@ export class AdminComponent implements OnInit {
         this._taskservice.getConfig(localStorage.getItem('token')).subscribe(
           r=>
           {
-            
-            //console.log(r.nsegmentos);
             this.nSegmentos=r.nsegmentos;
             this.nPuntos=r.points;
-           
+            this.nPuntos=r.points;
           }
         );
     }
