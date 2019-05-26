@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { bloomHasToken } from '@angular/core/src/render3/di';
 import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
@@ -12,10 +12,11 @@ import * as Winwheel from 'Winwheel';
   templateUrl: './ruleta.component.html',
   styleUrls: ['./ruleta.component.scss']
 })
-export class RuletaComponent implements OnInit {
 
-  title = 'angular-http-client';
-  label='Hazme click para saber cuantos puntos tienes';
+
+
+export class AppComponent implements OnInit{
+ 
   invitation:string;
   validation:string;
   config: Config;
@@ -26,6 +27,8 @@ export class RuletaComponent implements OnInit {
   myWheel:Winwheel;
   private wheelSpinning = false;
   private nsegmentos:number;
+  height:number;
+  width:number;
 
   constructor(
     private taskService: TaskService,
@@ -39,9 +42,19 @@ export class RuletaComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
+
+    this.height=window.innerHeight; 
+    this.width=window.innerWidth;
+    console.log(this.width);
+    console.log(this.height);
     this.myWheel = new Winwheel({
       'numSegments'    : 0,
+      'textFontSize'    : 50,
+      'responsive'   : true,  // This wheel is responsive!
       'segments'       :
+      
       [
           {'fillStyle' : '#eae56f', 'text' : 'Prize One'},
            
@@ -52,18 +65,32 @@ export class RuletaComponent implements OnInit {
           'duration' : 10,
           'spins'    : 16,
         
-      }
+      },
+      'pins' :
+        {
+            'outerRadius': 6,
+            'responsive' : true, // This must be set to true if pin size is to be responsive.
+        },
   });
     
-
+  console.log(this.myWheel);
     this.taskService.getConfig(this.token).subscribe(
       r=> {
        this.nsegmentos=r.nsegmentos;
         var paso;
     for (paso = 0; paso < this.nsegmentos; paso++) {
-     let newSegment= this.myWheel.addSegment();
+          if(paso%2==0){
+            let newSegment= this.myWheel.addSegment();
+            newSegment.text=" 💎 💎 💎";
+            newSegment.fillStyle='#e7706f';
+          }   
+          else{
+            let newSegment= this.myWheel.addSegment();
+            newSegment.fillStyle='#7de6ef'
+            newSegment.text=" 🍎 🍎 ";}
+          
      
-     newSegment.text="EJEMPLO RENDER";
+    
      
       this.myWheel.draw();
     };
@@ -108,4 +135,11 @@ export class RuletaComponent implements OnInit {
     this.wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
   }
 
-}
+ 
+   
+  }
+
+
+
+
+

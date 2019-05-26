@@ -43,6 +43,9 @@ export class TaskService {
     
       })
     };
+   
+
+    this.strfinal=cadena.concat(":");
     
     let obj= {}
     obj[cadena] = valor;
