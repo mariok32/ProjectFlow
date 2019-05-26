@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class AppComponent implements OnInit {
   title = 'Panel de administración';
-  private token: string
+   token: string
   constructor(
     private taskService: TaskService,
     private router: Router 
@@ -20,15 +20,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() { 
-    this.funciones1();
-   }
+ 
+   
 
-  funciones1()  {
-    this.taskService.getToken().subscribe(token => 
-      {
-        console.log(token);
-        this.token=token.token;
-      } );
+  
 
   }
 }

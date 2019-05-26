@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Task } from './../interfaces/task';
 import { Token } from './../interfaces/token';
 import { Config } from './../interfaces/config';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -29,6 +30,14 @@ export class TaskService {
     private http: HttpClient
   ){}
 
+  login(email: string, password: string): Observable<Token>{
+    
+    return this.http.post<Token>('https://gameserver.centic.ovh/auth/login', {
+      "user": email,
+      "password": password
+    });
+  }
+
   getToken() {
     const path = `${this.api}/auth/login`;
     return this.http.post<Token>(path,{
@@ -48,8 +57,19 @@ export class TaskService {
     },httpOptions);
   }
 
-  getConfig(){
+
+  
+  getConfig(token:string): Observable<Config>{
     const path = `${this.api}/config`;
+ 
+    const httpOptions = {
+      
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaXNwbGF5bmFtZSI6InVjYW0zIiwiZ2FtZSI6InVjYW0zIiwidXNlcm5hbWUiOiJ1Y2FtMyIsImlhdCI6MTU1ODYxMDY3N30.9qA4RZbmlDshnHi608LGXn0DmOdAll0tXlaYWFifpvY'
+    
+      })
+    };
     return this.http.get<Config>(path,httpOptions);
   }
 

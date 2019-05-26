@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PointFormComponent } from './point-form.component';
+import { RuletaComponent } from './ruleta.component';
 
-describe('PointFormComponent', () => {
-  let component: PointFormComponent;
-  let fixture: ComponentFixture<PointFormComponent>;
+describe('RuletaComponent', () => {
+  let component: RuletaComponent;
+  let fixture: ComponentFixture<RuletaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PointFormComponent ]
+      declarations: [ RuletaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PointFormComponent);
+    fixture = TestBed.createComponent(RuletaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
