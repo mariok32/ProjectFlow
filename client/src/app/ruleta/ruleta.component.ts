@@ -3,6 +3,7 @@ import { TaskService } from '../services/task.service';
 import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
 import {Config} from '../interfaces/config';
 import * as Winwheel from 'Winwheel';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 
 @Component({
@@ -18,16 +19,17 @@ export class RuletaComponent implements OnInit{
   invitation:string;
   validation:string;
   config: Config;
- 
-
-
   private token: string;
   myWheel:Winwheel;
   private wheelSpinning = false;
   private nsegmentos:number;
   height:number;
   width:number;
-
+  duracion:number;
+  private diamantes:string;
+  private medallas:string;
+  private oros:string;
+  private manzanas:string;
   constructor(
     private taskService: TaskService,
     private rutaActiva: ActivatedRoute,
@@ -46,8 +48,7 @@ export class RuletaComponent implements OnInit{
 
     this.height=window.innerHeight; 
     this.width=window.innerWidth;
-    console.log(this.width);
-    console.log(this.height);
+   
     this.myWheel = new Winwheel({
       'canvasId'       : 'canvas',
       'numSegments'    : 0,
@@ -64,6 +65,7 @@ export class RuletaComponent implements OnInit{
           'type'     : 'spinToStop',
           'duration' : 10,
           'spins'    : 16,
+          
         
       },
       'pins' :
@@ -73,40 +75,58 @@ export class RuletaComponent implements OnInit{
         },
   });
     
-  console.log(this.myWheel);
+  
     this.taskService.getConfig(this.token).subscribe(
       r=> {
        this.nsegmentos=r.nsegmentos;
         var paso;
+
     for (paso = 0; paso < this.nsegmentos; paso++) {
-          if(paso%2==0){
+          if(paso%4==0){
             let newSegment= this.myWheel.addSegment();
-            newSegment.text=" 💎 💎 💎";
+            ;
+            this.diamantes="💎".repeat(Math.floor(Math.random() * 3) + 1);
+            newSegment.text=this.diamantes;
             newSegment.fillStyle='#e7706f';
+            Math.floor(Math.random() * 3) + 1;
           }   
-          else{
+          if (paso%4==1)
+          {
             let newSegment= this.myWheel.addSegment();
             newSegment.fillStyle='#7de6ef'
-            newSegment.text=" 🍎 🍎 ";}
-          
-     
+            this.manzanas="🍎".repeat(Math.floor(Math.random() * 3) + 1);
+            newSegment.text=this.manzanas;
+          }
+          if (paso%4==2)
+          {
+            let newSegment= this.myWheel.addSegment();
+            newSegment.fillStyle='#e7706f'
+            this.oros="🥇".repeat(Math.floor(Math.random() * 3) + 1);
+            newSegment.text=this.oros;
+          }
+          if (paso%4==3)
+          {
+            //🥈
+            let newSegment= this.myWheel.addSegment();
+            newSegment.fillStyle='#7de6ef'
+            this.medallas="🥈".repeat(Math.floor(Math.random() * 3) + 1);
+            newSegment.text=this.medallas;
+          }
+    
     
      
       this.myWheel.draw();
     };
-      console.log()});
+      
+  });
  
 
       
    
-    
-   console.log(this.myWheel);`
-   `
+ 
+   
 
-    this.rutaActiva.queryParams.subscribe(params => {
-       this.invitation = params['invitation'];
-       this.validation = params['validation'];
-    });
+ 
 
     
 
@@ -114,17 +134,31 @@ export class RuletaComponent implements OnInit{
   
   }
 
-
+ 
+   delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+    }
   startSpin() {
-    let audio = new Audio('./assets/a.m4a'); 
-    audio.currentTime = 1;
-    audio.duration;
-    audio.play();
+    
     // Ensure that spinning can't be clicked again while already running.
     if (this.wheelSpinning === false) {
+      let audio = new Audio('./assets/a.m4a'); 
+      audio.currentTime = 1;
+      audio.duration;
+      audio.play();
       this.myWheel.startAnimation(true);
       this.wheelSpinning = true;
     }
+    (async () => { 
+      // Do something before delay
+   
+      await this.delay(12000);
+      this.alertPrize();
+      await this.delay(2000);
+     
+      this.router.navigate(['resultado']);
+  })();
+    
   }
 
   resetWheel() {
@@ -136,7 +170,30 @@ export class RuletaComponent implements OnInit{
   }
 
  
-   
+   alertPrize()
+  {
+      let winningSegment = this.myWheel.getIndicatedSegment();
+      
+      if (winningSegment.text.substring(0,2)==("💎"))
+      {
+        localStorage.setItem("puntuacion",(333*((winningSegment.text.length)/2)).toString());
+      }
+      if (winningSegment.text.substring(0,2)==("🍎"))
+      {
+        localStorage.setItem("puntuacion",(83*((winningSegment.text.length)/2)).toString());
+      }
+      if (winningSegment.text.substring(0,2)==("🥇"))
+      { 
+        localStorage.setItem("puntuacion", (250*((winningSegment.text.length)/2)).toString());
+      }
+      if (winningSegment.text.substring(0,2)==("🥈"))
+      { 
+        localStorage.setItem("puntuacion",(166*((winningSegment.text.length)/2)).toString());
+      }
+      
+     
+  }
+
   }
 
 

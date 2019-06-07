@@ -40,7 +40,7 @@ button::-moz-focus-inner { border: 0; } /* Elimina las interpretaciones de Firef
 .boton3d{
        border:0;
        width:30%;
-      
+       margin-top: 10px;
        color: #668428;
        font-size: 200%;
        font-family:sans-serif;
@@ -51,7 +51,8 @@ button::-moz-focus-inner { border: 0; } /* Elimina las interpretaciones de Firef
        border-radius: 40px;
       position: relative;
       margin-left: 38%;
-    }
+	}
+
 
     .centerddiv
     {
@@ -105,4 +106,31 @@ h6 {
 	top: 45%;
 	right: 0;
 	left: 0;
+}
+#panel{
+	width: 30%;
+	font-family: sans-serif; 
+	text-align: center;
+	font-size: 18px; 
+	font-weight: 400; 
+	color: #ffffff; 
+	background:#04e6ee;
+	position: absolute;
+	top: 45%;
+	right: 0;
+	left: 37%;
+	z-index:999;
+}
+
+@media (max-width :340px)
+{
+	#panel{
+		width: 60%;
+	}
+}
+
+
+
+#myModal > div > div > div.modal-body > p{
+	color:black;
 }

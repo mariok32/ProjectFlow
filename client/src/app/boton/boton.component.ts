@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-boton',
@@ -7,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BotonComponent implements OnInit {
 
-  constructor() {
+  constructor(private rutaActiva: ActivatedRoute) {
     
    }
-
   ngOnInit() {
+    
   }
 
 }

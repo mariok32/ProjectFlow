@@ -4,8 +4,44 @@
             <img id="logo" src="../../assets/logofull.png"/>
     </div>
     <div class="centerddiv">
-            <button class="boton3d" routerLink="/juego">Jugar</button>
+        <button class="boton3d" routerLink="/juego">Jugar</button>
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="boton3d" data-toggle="modal" data-target="#myModal">Ayuda</button>
     </div>
+
+    
+    
+     
+     
+    
+ 
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
         
+                <p >Leyenda de puntuación</p>
+                <p>💎💎💎 100%   1000pts    💎💎 66.5%  665pts     💎 33.3%  333pts </p>
+                <p>🥈🥈🥈 75%    750pts		 🥈🥈 50%    500pts	    🥈 25%    250pts </p>
+                <p>💰💰💰  50%    500pts    	💰💰  33.3%  333pts     💰 16.6%  166pts </p>
+                <p>🍎🍎🍎 25%    250pts		 🍎🍎  16.6%  166pts     🍎 8.3%   83pts </p>
+                <p>💎=💰💰  |  🥈🥈=💰💰💰   |  🥈=🍎🍎🍎  |  💰=🍎🍎 </p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 </div>
 
