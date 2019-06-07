@@ -1,4 +1,50 @@
-#canvas{
+
+ #canvas
+  { 
+    position: relative;
+    height: 80%;
+    width: 40%;
+    margin-top:100px;
+  }
+
+
+    @media (max-width :450px)
+    { #canvas
+      { 
+        position: relative;
+        height: 55%;
+        width: 90%;
+        margin-top:100px;
+      }
+    }
+
+
+@media (min-height :1000px)
+    { #canvas
+       {
+        position: relative;
+        height: 65%;
+        width: 80%;
+        margin-top:100px;
+       }
+    }
+  
+ 
+
+.clasemaestra {
     
-    margin: auto ; 
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  
+ 
+}
+
+
+#background{
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }

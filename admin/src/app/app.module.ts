@@ -8,7 +8,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { TaskService } from './services/task.service';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-//import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { Ng5SliderModule } from 'ng5-slider';
+
 
 
 const appRoutes: Routes = [
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
       FormsModule,
       ReactiveFormsModule,
       HttpModule,
+      Ng5SliderModule,
       RouterModule.forRoot(
         appRoutes,
        // { enableTracing: true } // <-- debugging purposes only

@@ -1,8 +1,6 @@
 import { Component, OnInit,  } from '@angular/core';
 import { TaskService } from '../services/task.service';
-import { bloomHasToken } from '@angular/core/src/render3/di';
 import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
-import { paramss} from '../interfaces/params';
 import {Config} from '../interfaces/config';
 import * as Winwheel from 'Winwheel';
 
@@ -15,7 +13,7 @@ import * as Winwheel from 'Winwheel';
 
 
 
-export class AppComponent implements OnInit{
+export class RuletaComponent implements OnInit{
  
   invitation:string;
   validation:string;
@@ -43,6 +41,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
 
+  
 
 
     this.height=window.innerHeight; 
@@ -50,6 +49,7 @@ export class AppComponent implements OnInit{
     console.log(this.width);
     console.log(this.height);
     this.myWheel = new Winwheel({
+      'canvasId'       : 'canvas',
       'numSegments'    : 0,
       'textFontSize'    : 50,
       'responsive'   : true,  // This wheel is responsive!

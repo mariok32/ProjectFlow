@@ -120,11 +120,29 @@
                                     <div id="morris-area-chart">
                                         <form novalidate>
                                         <div class="form-group" >
-                                          <label for="">Segmentos</label>
-                                              
-                                            <input title="segmentos" placeholder={{nSegmentos}} class="form-control form-control-lg" type="text" name="points" [(ngModel)]="this.nSegmentos" required/>
-                                            
+                                          <label >Segmentos</label>
+                                          <ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+                                          
+                                          <div style="display: none;">
+                                          <label >Segmentos de tipo 💎 </label>
+                                          <ng5-slider [(value)]="value1" [options]="options1"></ng5-slider>
+                                          <label >Segmentos de tipo 💰 </label>
+                                          <ng5-slider [(value)]="value2" [options]="options2"></ng5-slider>
+                                          <label >Segmentos de tipo 🥈 </label>
+                                          <ng5-slider [(value)]="value3" [options]="options3"></ng5-slider>
                                         </div>
+
+                                          <label >Segmentos de tipo 💎 </label>
+                                          <ng5-slider [(value)]="value1" [options]="options1"></ng5-slider>
+                                          <label >Segmentos de tipo 💰 </label>
+                                          <ng5-slider [(value)]="value2" [options]="options2"></ng5-slider>
+                                          <label >Segmentos de tipo 🥈 </label>
+                                          <ng5-slider [(value)]="value3" [options]="options3"></ng5-slider>
+                                          <label >Segmentos de tipo 🍎 </label>
+                                          <ng5-slider [(value)]="value4" [options]="options4"></ng5-slider>    
+                                           
+                                        </div>
+
                                       
                                       </form>  <button (click)="setSegmentos()" class="btn btn-primary"> Ajustar</button></div>
                                 </div>
