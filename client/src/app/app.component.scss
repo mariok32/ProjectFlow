@@ -1,19 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-body > app-root
-{
-    width:100%;
-    height: 100%;
-};
 
-
-body > app-root > app-ruleta > div
-{
-    width:100%;
-    height: 100%;
-};
-
-body > app-root > app-ruleta 
-{
-    width:100%;
-    height: 100%;
-};
+:host {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }

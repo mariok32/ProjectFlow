@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "^0.12.4",
     "@angular/animations": "^7.2.15",
     "@angular/cdk": "^7.3.7",
     "@angular/common": "~7.2.1",
@@ -25,13 +26,15 @@
     "@material-ui/core": "^3.9.3",
     "core-js": "^2.5.4",
     "install": "^0.12.2",
+    "ng5-slider": "^1.2.0",
     "npm": "^6.9.0",
+    "rangeslider-js": "^3.2.5",
+    "rangeslider.js": "^2.3.2",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "^0.9.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.12.2",
     "@angular/cli": "~7.2.2",
     "@angular/compiler-cli": "^7.2.9",
     "@angular/language-service": "~7.2.1",

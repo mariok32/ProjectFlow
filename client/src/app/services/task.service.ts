@@ -72,6 +72,26 @@ export class TaskService {
     };
     return this.http.get<Config>(path,httpOptions);
   }
+  postSendPoints(validation:string,invitation:string,percent:number){
+    const path = `${this.api}/games/send_points`;
+    const httpOptions = {
+      
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+           
+      })
+    };
+    return this.http.post(path,{
+      "validation":validation,
+      "invitation":invitation,
+      "percent":percent,
+      "Title":"Puntos ganados",
+      "resume":"Has ganado puntos con el juego",
+      "message":"Como has jugado al juego de la ruleta has recibido puntos por ello",
+    });
+
+ 
+  }
 
   createTask(task: Task) {
     const path = `${this.api}/todos`;
