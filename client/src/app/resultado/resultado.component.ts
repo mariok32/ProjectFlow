@@ -36,8 +36,8 @@ export class ResultadoComponent implements OnInit {
       this.unidades=this.cadena.substring(2,3);
      }
     
-     alert(localStorage.getItem("validation"));
-     this.TaskService_.postSendPoints(localStorage.getItem("validation"),localStorage.getItem("invitation"),parseInt(this.cadena)).subscribe();
+ 
+     this.TaskService_.postSendPoints(localStorage.getItem("validation"),localStorage.getItem("invitation"),parseInt(this.cadena)/10).subscribe();
 
      localStorage.removeItem("puntuacion");
      localStorage.removeItem("invitation");

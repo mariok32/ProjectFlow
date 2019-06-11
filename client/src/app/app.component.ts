@@ -1,11 +1,8 @@
 import { Component, OnInit,  } from '@angular/core';
 import { TaskService } from './services/task.service';
-import { bloomHasToken } from '@angular/core/src/render3/di';
-import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
-import { paramss} from './interfaces/params';
+import { ActivatedRoute, Router, Routes } from '@angular/router';
+
 import {Config} from './interfaces/config';
-import * as Winwheel from 'Winwheel';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 
 @Component({
@@ -46,10 +43,16 @@ export class AppComponent implements OnInit{
    (async () => { 
     // Do something before delay
  
-      await this.delay(1000);
+      await this.delay(10);
+      
+      if (this.validation ==undefined && this.invitation ==undefined)
+      {
+  
+        this.router.navigate(['error']);
+      }
       localStorage.setItem("validation",this.validation);
       localStorage.setItem("invitation",this.invitation);
-
+      
     })();
 
   }
